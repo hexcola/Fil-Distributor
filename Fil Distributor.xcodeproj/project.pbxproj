@@ -21,6 +21,7 @@
 		B5E839112AE2C70700106E45 /* Distributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839102AE2C70700106E45 /* Distributor.swift */; };
 		B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839122AE2C7A100106E45 /* BalanceView.swift */; };
 		B5E8391F2AE2D19B00106E45 /* libsecp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E8391D2AE2D19B00106E45 /* libsecp256k1.a */; };
+		B5E839222AE2D2D800106E45 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839212AE2D2D800106E45 /* Base32.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B5E8391B2AE2D19B00106E45 /* secp256k1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = secp256k1.h; sourceTree = "<group>"; };
 		B5E8391D2AE2D19B00106E45 /* libsecp256k1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsecp256k1.a; sourceTree = "<group>"; };
 		B5E8391E2AE2D19B00106E45 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		B5E839212AE2D2D800106E45 /* Base32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base32.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		B5E839162AE2D17000106E45 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B5E839202AE2D2C800106E45 /* base32 */,
 				B5E839172AE2D19B00106E45 /* secp256k1 */,
 			);
 			path = Libraries;
@@ -163,6 +166,14 @@
 				B5E8391D2AE2D19B00106E45 /* libsecp256k1.a */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		B5E839202AE2D2C800106E45 /* base32 */ = {
+			isa = PBXGroup;
+			children = (
+				B5E839212AE2D2D800106E45 /* Base32.swift */,
+			);
+			path = base32;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E839222AE2D2D800106E45 /* Base32.swift in Sources */,
 				B5E839042AE2C42900106E45 /* ExcelHandler.swift in Sources */,
 				B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */,
 				B5E839022AE2C40900106E45 /* ExcelHandlerView.swift in Sources */,
