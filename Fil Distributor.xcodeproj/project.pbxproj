@@ -37,6 +37,7 @@
 		B5E8390E2AE2C6E000106E45 /* DistributorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributorView.swift; sourceTree = "<group>"; };
 		B5E839102AE2C70700106E45 /* Distributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distributor.swift; sourceTree = "<group>"; };
 		B5E839122AE2C7A100106E45 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		B5E839152AE2CD5600106E45 /* Filecoin.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Filecoin.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +55,7 @@
 		B5E838E42AE2B16000106E45 = {
 			isa = PBXGroup;
 			children = (
+				B5E839142AE2CCE800106E45 /* Docs */,
 				B5E838FE2AE2B19C00106E45 /* README.md */,
 				B5E838EF2AE2B16000106E45 /* Fil-Distributor */,
 				B5E838EE2AE2B16000106E45 /* Products */,
@@ -109,6 +111,14 @@
 				B5E839102AE2C70700106E45 /* Distributor.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B5E839142AE2CCE800106E45 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				B5E839152AE2CD5600106E45 /* Filecoin.md */,
+			);
+			path = Docs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
