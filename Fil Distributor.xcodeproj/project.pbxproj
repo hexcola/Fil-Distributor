@@ -22,6 +22,7 @@
 		B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839122AE2C7A100106E45 /* BalanceView.swift */; };
 		B5E8391F2AE2D19B00106E45 /* libsecp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E8391D2AE2D19B00106E45 /* libsecp256k1.a */; };
 		B5E839222AE2D2D800106E45 /* Base32.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839212AE2D2D800106E45 /* Base32.swift */; };
+		B5E839252AE2D37B00106E45 /* Blake2 in Frameworks */ = {isa = PBXBuildFile; productRef = B5E839242AE2D37B00106E45 /* Blake2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 			files = (
 				B5E8391F2AE2D19B00106E45 /* libsecp256k1.a in Frameworks */,
 				B5E839072AE2C58F00106E45 /* CoreXLSX in Frameworks */,
+				B5E839252AE2D37B00106E45 /* Blake2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +196,7 @@
 			name = "Fil-Distributor";
 			packageProductDependencies = (
 				B5E839062AE2C58F00106E45 /* CoreXLSX */,
+				B5E839242AE2D37B00106E45 /* Blake2 */,
 			);
 			productName = "Fil-Distributor";
 			productReference = B5E838ED2AE2B16000106E45 /* Fil-Distributor.app */;
@@ -225,6 +228,7 @@
 			mainGroup = B5E838E42AE2B16000106E45;
 			packageReferences = (
 				B5E839052AE2C4D200106E45 /* XCRemoteSwiftPackageReference "CoreXLSX" */,
+				B5E839232AE2D37B00106E45 /* XCRemoteSwiftPackageReference "Blake2.swift" */,
 			);
 			productRefGroup = B5E838EE2AE2B16000106E45 /* Products */;
 			projectDirPath = "";
@@ -494,6 +498,14 @@
 				minimumVersion = 0.14.2;
 			};
 		};
+		B5E839232AE2D37B00106E45 /* XCRemoteSwiftPackageReference "Blake2.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tesseract-one/Blake2.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -501,6 +513,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B5E839052AE2C4D200106E45 /* XCRemoteSwiftPackageReference "CoreXLSX" */;
 			productName = CoreXLSX;
+		};
+		B5E839242AE2D37B00106E45 /* Blake2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5E839232AE2D37B00106E45 /* XCRemoteSwiftPackageReference "Blake2.swift" */;
+			productName = Blake2;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
