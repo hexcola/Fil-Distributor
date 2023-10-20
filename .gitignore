@@ -19,7 +19,7 @@ xcuserdata
 /Pods
 /Carthage
 
-.swiftpm
+# .swiftpm
 .swiftpm/xcode/xcuserdata
 
 /node_modules

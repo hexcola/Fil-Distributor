@@ -11,6 +11,15 @@
 		B5E838F32AE2B16000106E45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E838F22AE2B16000106E45 /* ContentView.swift */; };
 		B5E838F52AE2B16100106E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E838F42AE2B16100106E45 /* Assets.xcassets */; };
 		B5E838F82AE2B16100106E45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E838F72AE2B16100106E45 /* Preview Assets.xcassets */; };
+		B5E839022AE2C40900106E45 /* ExcelHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839012AE2C40900106E45 /* ExcelHandlerView.swift */; };
+		B5E839042AE2C42900106E45 /* ExcelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839032AE2C42900106E45 /* ExcelHandler.swift */; };
+		B5E839072AE2C58F00106E45 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = B5E839062AE2C58F00106E45 /* CoreXLSX */; };
+		B5E839092AE2C5B400106E45 /* Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839082AE2C5B400106E45 /* Receiver.swift */; };
+		B5E8390B2AE2C64800106E45 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390A2AE2C64800106E45 /* Account.swift */; };
+		B5E8390D2AE2C67D00106E45 /* ReceiverListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */; };
+		B5E8390F2AE2C6E000106E45 /* DistributorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390E2AE2C6E000106E45 /* DistributorView.swift */; };
+		B5E839112AE2C70700106E45 /* Distributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839102AE2C70700106E45 /* Distributor.swift */; };
+		B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839122AE2C7A100106E45 /* BalanceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +29,14 @@
 		B5E838F42AE2B16100106E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E838F72AE2B16100106E45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5E838FE2AE2B19C00106E45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B5E839012AE2C40900106E45 /* ExcelHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcelHandlerView.swift; sourceTree = "<group>"; };
+		B5E839032AE2C42900106E45 /* ExcelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcelHandler.swift; sourceTree = "<group>"; };
+		B5E839082AE2C5B400106E45 /* Receiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receiver.swift; sourceTree = "<group>"; };
+		B5E8390A2AE2C64800106E45 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverListView.swift; sourceTree = "<group>"; };
+		B5E8390E2AE2C6E000106E45 /* DistributorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributorView.swift; sourceTree = "<group>"; };
+		B5E839102AE2C70700106E45 /* Distributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distributor.swift; sourceTree = "<group>"; };
+		B5E839122AE2C7A100106E45 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E839072AE2C58F00106E45 /* CoreXLSX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +71,8 @@
 		B5E838EF2AE2B16000106E45 /* Fil-Distributor */ = {
 			isa = PBXGroup;
 			children = (
+				B5E839002AE2B82900106E45 /* Models */,
+				B5E838FF2AE2B82000106E45 /* Views */,
 				B5E838F02AE2B16000106E45 /* Fil_DistributorApp.swift */,
 				B5E838F22AE2B16000106E45 /* ContentView.swift */,
 				B5E838F42AE2B16100106E45 /* Assets.xcassets */,
@@ -67,6 +87,28 @@
 				B5E838F72AE2B16100106E45 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B5E838FF2AE2B82000106E45 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5E839012AE2C40900106E45 /* ExcelHandlerView.swift */,
+				B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */,
+				B5E8390E2AE2C6E000106E45 /* DistributorView.swift */,
+				B5E839122AE2C7A100106E45 /* BalanceView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B5E839002AE2B82900106E45 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B5E839032AE2C42900106E45 /* ExcelHandler.swift */,
+				B5E839082AE2C5B400106E45 /* Receiver.swift */,
+				B5E8390A2AE2C64800106E45 /* Account.swift */,
+				B5E839102AE2C70700106E45 /* Distributor.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +127,9 @@
 			dependencies = (
 			);
 			name = "Fil-Distributor";
+			packageProductDependencies = (
+				B5E839062AE2C58F00106E45 /* CoreXLSX */,
+			);
 			productName = "Fil-Distributor";
 			productReference = B5E838ED2AE2B16000106E45 /* Fil-Distributor.app */;
 			productType = "com.apple.product-type.application";
@@ -104,7 +149,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B5E838E82AE2B16000106E45 /* Build configuration list for PBXProject "Fil-Distributor" */;
+			buildConfigurationList = B5E838E82AE2B16000106E45 /* Build configuration list for PBXProject "Fil Distributor" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -113,6 +158,9 @@
 				Base,
 			);
 			mainGroup = B5E838E42AE2B16000106E45;
+			packageReferences = (
+				B5E839052AE2C4D200106E45 /* XCRemoteSwiftPackageReference "CoreXLSX" */,
+			);
 			productRefGroup = B5E838EE2AE2B16000106E45 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,8 +187,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E839042AE2C42900106E45 /* ExcelHandler.swift in Sources */,
+				B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */,
+				B5E839022AE2C40900106E45 /* ExcelHandlerView.swift in Sources */,
+				B5E8390D2AE2C67D00106E45 /* ReceiverListView.swift in Sources */,
+				B5E839092AE2C5B400106E45 /* Receiver.swift in Sources */,
 				B5E838F32AE2B16000106E45 /* ContentView.swift in Sources */,
+				B5E839112AE2C70700106E45 /* Distributor.swift in Sources */,
 				B5E838F12AE2B16000106E45 /* Fil_DistributorApp.swift in Sources */,
+				B5E8390F2AE2C6E000106E45 /* DistributorView.swift in Sources */,
+				B5E8390B2AE2C64800106E45 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +333,7 @@
 				DEVELOPMENT_TEAM = ZQ6U29BTU5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fil Distributor";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -290,9 +347,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.diancun.Fil-Distributor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,6 +367,7 @@
 				DEVELOPMENT_TEAM = ZQ6U29BTU5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fil Distributor";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,16 +381,19 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.diancun.Fil-Distributor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B5E838E82AE2B16000106E45 /* Build configuration list for PBXProject "Fil-Distributor" */ = {
+		B5E838E82AE2B16000106E45 /* Build configuration list for PBXProject "Fil Distributor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B5E838F92AE2B16100106E45 /* Debug */,
@@ -348,6 +412,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5E839052AE2C4D200106E45 /* XCRemoteSwiftPackageReference "CoreXLSX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/CoreXLSX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5E839062AE2C58F00106E45 /* CoreXLSX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5E839052AE2C4D200106E45 /* XCRemoteSwiftPackageReference "CoreXLSX" */;
+			productName = CoreXLSX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B5E838E52AE2B16000106E45 /* Project object */;
 }
