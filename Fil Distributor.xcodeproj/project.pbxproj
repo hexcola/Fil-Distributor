@@ -402,6 +402,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Fil-Distributor/Preview Content\"";
 				DEVELOPMENT_TEAM = ZQ6U29BTU5;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Libraries/secp256k1/include";
 				INFOPLIST_KEY_CFBundleDisplayName = "Fil Distributor";
@@ -439,6 +441,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Fil-Distributor/Preview Content\"";
 				DEVELOPMENT_TEAM = ZQ6U29BTU5;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Libraries/secp256k1/include";
 				INFOPLIST_KEY_CFBundleDisplayName = "Fil Distributor";
