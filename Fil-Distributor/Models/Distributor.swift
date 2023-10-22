@@ -9,126 +9,118 @@ import Foundation
 import Blake2
 import secp256k1
 
-enum LotusError: Error {
-    case wrongMessageSize
-    
-    case wrongPrivateKeySize
-    
-    case invalidPrivateKey
-    
-    case signatureFailed
-}
-
-extension LotusError: CustomStringConvertible {
-    public var description: String {
-        switch self {
-        case .wrongMessageSize:
-            return "Message size must be 32"
-        case .wrongPrivateKeySize:
-            return "Private key size must be 32"
-        case .invalidPrivateKey:
-            return "Private key invalid"
-        case .signatureFailed:
-            return "Signature failed"
-        }
-    }
-}
-
-struct Lotus {
-    func cidToBytes(cid: String) -> Data? {
-        do {
-            let data = try Base32.decode(string: cid)
-            return data
-        } catch {
-            print("erro....")
-            return nil
-        }
-    }
-    
-    func pkToBytes(pk: String) -> Data?{
-        if let data = pk.data(using: .utf8) {
-            let byteArray = Data(base64Encoded: data)
-            return byteArray
-        } else {
-            print("faild to convert string to data")
-            return nil
-        }
-    }
-    
-    func blake2bSum256(msg:Data) -> Data? {
-        do {
-            let hash = try! Blake2b.hash(size: 32, data: msg)
-            return hash
-        } catch {
-            return nil
-        }
-    }
-    
-    func sigToString(sig:[UInt8]) -> String {
-        return Data(sig).base64EncodedString()
-    }
-    
-    func sign(msg:[UInt8], seckey:[UInt8]) throws -> [UInt8] {
-//        let context = secp256k1_context_create(1)!
-        let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))!
-        
-        if msg.count != 32 {
-            throw LotusError.wrongMessageSize
-        }
-        
-        if seckey.count != 32 {
-            throw LotusError.wrongPrivateKeySize
-        }
-        
-        let seckeydata = UnsafeMutablePointer(mutating: seckey)
-        
-        if secp256k1_ec_seckey_verify(context, seckeydata) != 1 {
-            throw LotusError.invalidPrivateKey
-        }
-        
-        let msgdata = UnsafeMutablePointer(mutating: msg)
-        let noncefunc = secp256k1_nonce_function_rfc6979
-        var sigstruct = secp256k1_ecdsa_recoverable_signature()
-        
-        if secp256k1_ecdsa_sign_recoverable(context, &sigstruct, msgdata, seckeydata, noncefunc, nil) == 0 {
-            throw LotusError.signatureFailed
-            }
-
-            var sig = [UInt8](repeating: 0, count: 65)
-            var recid: Int32 = 0
-            secp256k1_ecdsa_recoverable_signature_serialize_compact(context, &sig, &recid, &sigstruct)
-            sig[64] = UInt8(recid) // add back recid to get 65 bytes sig
-            return sig
-    }
-}
-
-struct Message:Codable {
-    var Version: Int
-    var To: String
-    var From: String
-    var Nonce: Int
-    var Value: String
-    var GasLimit: Int
-    var GasFeeCap: String
-    var GasPremium: String
-    var Method: Int
-    var Params: String
-}
-
 struct Distributor {
-    var fromAccount: Account
-    var receivers: [Receiver]
+    private let filecoin = Filecoin()
     
-    func signMsg(){
-        
+    func packMessages(sender: Account, receivers: [Receiver], startNonce: Int) -> [Message] {
+        var messages = [Message]()
+        var nonce = startNonce
+        receivers.forEach { r in
+            let value = Int(round(r.amount * filecoin.unit))
+            print("Send \(r.address): \(r.amount)  -> \(value)")
+            
+            var message = Message(from: sender.address, to: r.address, value: String(value), params: nil)
+            message.setNonce(nonce)
+            messages.append(message)
+            nonce += 1
+        }
+        return messages
     }
     
-    func pushMsg(){
+    func signMessages(sender: Account, messages: [Message])throws -> [SignedMessage]{
+        var signedMessages = [SignedMessage]()
+        // to get signature
+        for message in messages {
+            do {
+                let signedMessage = try filecoin.wallet.sign(accountAddress: sender.address, message: message)
+                signedMessages.append(signedMessage!)
+            } catch {
+                throw error
+            }
+        }
+        return signedMessages
     }
     
-    func send() {
+    
+    func dispatch(sender: Account, receivers: [Receiver]) {
+        filecoin.mpool.getNonce(sender: sender.address, completion: { result in
+            let nonce = try! result.get()
+            
+            let messages = packMessages(sender: sender, receivers: receivers, startNonce: nonce)
+            
+            self.filecoin.gas.batchEstimateMessageGas(messages: messages, maxFee: MaxFee(), cids: [], completion: { result in
+                do {
+                    let response = try result.get()
+                    let signedMessages = try signMessages(sender: sender, messages: response)
+                    
+                    // push to mpool
+                    self.filecoin.mpool.batchPushMessage(signedMessages: signedMessages, completion: { cids, error in
+                        if error != nil {
+                            print(error)
+                        }
+                        for cid in cids {
+                            print(cid.value)
+                        }
+                    })
+                } catch {
+                    print(error)
+                }
+            })
+        })
+    }
+    
+    func send(fromAccount: Account, receivers: [Receiver]) {
         receivers.forEach { r in
             print("Send \(r.address): \(r.amount)")
         }
+        // NOTE:
+        // If you encounter an error here, add a `DEV_RECEIVER_ADDRESS`
+        // environment variable to Xcode project schema
+        // REF: https://m25lazi.medium.com/environment-variables-in-xcode-a78e07d223ed
+        var message = Message(from: fromAccount.address, to: ProcessInfo.processInfo.environment["DEV_RECEIVER_ADDRESS"]!, value: "1000000000000000", params: nil)
+        
+        
+        filecoin.mpool.getNonce(sender: fromAccount.address, completion: { result in
+            let nonce = try! result.get()
+            message.setNonce(nonce)
+            
+            let jsonEncoder = JSONEncoder()
+            if let jsonData = try? jsonEncoder.encode(message),
+               let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("Encoded JSON: \(jsonString)")
+                
+                
+                // Estimate message gas
+                self.filecoin.gas.estimateMessageGas(message: message, maxFee: MaxFee(), cids: [], completion: { result in
+                    do {
+                        let response = try result.get()
+                        // to get signature
+                        guard let signedMessage = try self.filecoin.wallet.sign(accountAddress: fromAccount.address, message: response) else {
+                            return
+                        }
+                        
+                        // push message to mpool
+                        self.filecoin.mpool.pushMessage(signedMessage: signedMessage, completion: { result in
+                            
+                            do {
+                                let cid2 = try result.get()
+                                print(cid2)
+                            } catch {
+                                print(error)
+                            }
+                            
+                        })
+                        // encode to JSON
+                        if let xjsonData = try? jsonEncoder.encode(signedMessage),
+                           let xjsonString = String(data: xjsonData, encoding: .utf8) {
+                            print(xjsonString)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                    
+                })
+            }
+        })
     }
 }

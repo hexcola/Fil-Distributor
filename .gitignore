@@ -14,7 +14,7 @@ build/
 !default.perspectivev3
 xcuserdata
 !xcshareddata
-!xcschemes
+xcschemes
 *.moved-aside
 /Pods
 /Carthage

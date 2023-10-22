@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var account = Account(address: "f1abcdef12345678901234567890abcdef1234567")
+    // NOTE:
+    // If you encounter an error here, add a `DEV_SENDER_ADDRESS`
+    // environment variable to Xcode project schema
+    // REF: https://m25lazi.medium.com/environment-variables-in-xcode-a78e07d223ed
+    
+    // TODO: This is just for dev, need to add wallet management feature
+    @State private var account = Account(address: ProcessInfo.processInfo.environment["DEV_SENDER_ADDRESS"]!)
     @State private var showingAlert = false
     @State private var receivers: [Receiver]?
     
@@ -25,7 +31,7 @@ struct ContentView: View {
             })
             
             // Send Fils to all receivers.
-            DistributorView(fromAccount: $account, receivers: $receivers)
+            DistributorView(sender: $account, receivers: $receivers)
             
             // List all receivers and total Fils to confirm
             ReceiverListView(receivers: $receivers)
