@@ -11,10 +11,17 @@ struct SplashScreenView: View {
     @State var isActive: Bool = false
     @State private var size = 0.8
     @State private var opacity = 0.5
+    @State private var key:Key?
     
     var body: some View {
         if isActive {
-            ContentView()
+            // try to load UserDefaults Data
+            if key != nil {
+                AccountView(key: self.key!)
+                
+            } else {
+                ImportKeyView()
+            }
         } else {
             ZStack {
                 // background
@@ -42,13 +49,19 @@ struct SplashScreenView: View {
                 }
                 .background(Color.blue)
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        withAnimation {
-                            self.isActive = true
+                    if let filKey = UserDefaults.standard.string(forKey: "filKey"),
+                       let filAddress = UserDefaults.standard.string(forKey: "filAddress") {
+                        if let importkey = Key(from: filKey, address: filAddress) {
+                            self.key = importkey
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            withAnimation {
+                                self.isActive = true
+                            }
                         }
                     }
+                    
                 }
-                
             }
         }
     }

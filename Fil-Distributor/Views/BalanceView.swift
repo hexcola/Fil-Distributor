@@ -15,18 +15,49 @@ struct BalanceView: View {
     private let filecoin = Filecoin()
     
     var body: some View {
-        Text("Account: \(accountAddress)")
-        
-        // Display
-        Text("Balance: \(accountBalance)").onAppear {
-            filecoin.wallet.balance(sender: accountAddress, completion: { result in
-                do {
-                    accountBalance = try result.get()
-                } catch {
-                    print(error)
-                }
-            })
+        VStack {
+            Image("filecoin")
+                .resizable()
+                .frame(width: 100, height: 88)
+            
+            // Address & Copy
+            HStack {
+                Text("\(accountAddress)")
+                    .font(.caption)
+                    .foregroundStyle(Color.white)
+                
+                Button(action: {
+                    // TODO: copy
+                    print("Copy it, WIP")
+                }, label: {
+                    Label("", systemImage: "doc.on.doc")
+                        .foregroundColor(.white)
+                })
+            }
+            
+            // Display
+            Text("\(accountBalance) FIL")
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .foregroundStyle(Color.white)
+                .onAppear {
+                
+    //            filecoin.wallet.balance(sender: accountAddress, completion: { result in
+    //                do {
+    //                    accountBalance = try result.get()
+    //                } catch {
+    //                    print(error)
+    //                }
+    //            })
+            }
         }
+        .frame(width: 360, height: 200)
+        .background(
+//            LinearGradient(gradient: Gradient(colors: [.yellow,.purple, .pink, .purple, .yellow]), startPoint: .bottomLeading, endPoint: .topTrailing)
+//            
+            RadialGradient(gradient: Gradient(colors: [.yellow,.purple, .pink, .purple, .yellow]), center: .center, startRadius: 2, endRadius: 650)
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+        .shadow(radius: 5)
     }
 }
 

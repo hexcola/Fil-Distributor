@@ -150,6 +150,25 @@ And it will return:
   }
 ]
 
+## How To Generate A PublicKey Address From A PrivateKey
+
+Step 1
+
+- [NewKey(ki KeyInfo)](https://github.com/filecoin-project/lotus/blob/14a7ae339fa57459283cd62ce8c0070b55a39c64/chain/wallet/key/key.go#L37)
+  - sigs.ToPublic
+    - bls
+    - secp
+      - [ToPublic](https://github.com/filecoin-project/lotus/blob/14a7ae339fa57459283cd62ce8c0070b55a39c64/lib/sigs/secp/init.go#L25)
+        - [crypto.PublicKey](https://github.com/filecoin-project/go-crypto/blob/1d565524a3870963ce21412f8d7834f5459c5ded/crypto.go#L20)
+          - [ScalarBaseMult](https://github.com/ipsn/go-secp256k1/blob/9d62b9f0bc52d16160f79bfb84b2bbf0f6276b03/curve.go#L278)
+          - [elliptic.Marshal](https://pkg.go.dev/crypto/elliptic#Marshal)   
+
+
+Step 2
+- [address.NewSecp256k1Address(k.PublicKey)](https://github.com/filecoin-project/lotus/blob/14a7ae339fa57459283cd62ce8c0070b55a39c64/chain/wallet/key/key.go#L50C20-L50C60)
+  - https://github.com/filecoin-project/go-address/blob/37ccdec47b76ea45424c7c9310e821cb224894e6/address.go#L170
+    - [newAddress](https://github.com/filecoin-project/go-address/blob/37ccdec47b76ea45424c7c9310e821cb224894e6/address.go#L231)
+
 
 ## CHANGELOG
 

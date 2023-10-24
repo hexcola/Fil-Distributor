@@ -15,9 +15,14 @@ struct ExcelHandlerView: View {
     
     var body: some View {
         VStack {
-            Button("Open File") {
+            Button("Send") {
                 self.documentPickerPresented.toggle()
             }
+            .frame(width: 120, height: 40)
+            .foregroundColor(.white)
+            .background(Color.blue)
+            .cornerRadius(5)
+            
             .fileImporter(
                 isPresented: $documentPickerPresented,
                 allowedContentTypes: [.spreadsheet],
@@ -26,10 +31,16 @@ struct ExcelHandlerView: View {
                         let selectedFile = try result.get().first
                         self.selectedURL = selectedFile
                         // Handle the selected file URL as needed
-                        let handler = ExcelHandler()
-                        print("Selected file URL: \(selectedFile?.absoluteString ?? "")")
-                        let receivers = handler.parseExcel(filename: selectedFile!.path(percentEncoded: false))
-                        callback(receivers)
+//                        let handler = ExcelHandler()
+//                        print("Selected file URL: \(selectedFile?.absoluteString ?? "")")
+//                        let receivers = handler.parseExcel(filename: selectedFile!.path(percentEncoded: false))
+//                        callback(receivers)
+                        NavigationLink(
+                            destination: HistoryView(),
+                            label: {
+                                Label("Wack", image: "fileco")
+                            }
+                        )
                     } catch {
                         print("File picking failed: \(error.localizedDescription)")
                     }

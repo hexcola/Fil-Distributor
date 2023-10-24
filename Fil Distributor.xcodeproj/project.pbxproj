@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5E4DFE02AE6699500471FF1 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4DFDF2AE6699400471FF1 /* SplashScreenView.swift */; };
+		B5E4DFE22AE6728100471FF1 /* ImportKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4DFE12AE6728100471FF1 /* ImportKeyView.swift */; };
 		B5E838F12AE2B16000106E45 /* Fil_DistributorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E838F02AE2B16000106E45 /* Fil_DistributorApp.swift */; };
 		B5E838F32AE2B16000106E45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E838F22AE2B16000106E45 /* ContentView.swift */; };
 		B5E838F52AE2B16100106E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E838F42AE2B16100106E45 /* Assets.xcassets */; };
@@ -32,9 +34,13 @@
 		B5E839362AE3806A00106E45 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839352AE3806A00106E45 /* Signature.swift */; };
 		B5E8393B2AE3E48900106E45 /* Filecoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8393A2AE3E48900106E45 /* Filecoin.swift */; };
 		B5E8393E2AE3FCBF00106E45 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8393D2AE3FCBF00106E45 /* Key.swift */; };
+		B5E839402AE4FE4500106E45 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8393F2AE4FE4500106E45 /* AccountView.swift */; };
+		B5E839422AE508DC00106E45 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839412AE508DC00106E45 /* HistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B5E4DFDF2AE6699400471FF1 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		B5E4DFE12AE6728100471FF1 /* ImportKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportKeyView.swift; sourceTree = "<group>"; };
 		B5E838ED2AE2B16000106E45 /* Fil-Distributor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fil-Distributor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E838F02AE2B16000106E45 /* Fil_DistributorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fil_DistributorApp.swift; sourceTree = "<group>"; };
 		B5E838F22AE2B16000106E45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +71,8 @@
 		B5E839352AE3806A00106E45 /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
 		B5E8393A2AE3E48900106E45 /* Filecoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filecoin.swift; sourceTree = "<group>"; };
 		B5E8393D2AE3FCBF00106E45 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		B5E8393F2AE4FE4500106E45 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		B5E839412AE508DC00106E45 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +136,10 @@
 				B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */,
 				B5E8390E2AE2C6E000106E45 /* DistributorView.swift */,
 				B5E839122AE2C7A100106E45 /* BalanceView.swift */,
+				B5E8393F2AE4FE4500106E45 /* AccountView.swift */,
+				B5E839412AE508DC00106E45 /* HistoryView.swift */,
+				B5E4DFDF2AE6699400471FF1 /* SplashScreenView.swift */,
+				B5E4DFE12AE6728100471FF1 /* ImportKeyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,7 +324,10 @@
 				B5E839222AE2D2D800106E45 /* Base32.swift in Sources */,
 				B5E839042AE2C42900106E45 /* ExcelHandler.swift in Sources */,
 				B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */,
+				B5E4DFE22AE6728100471FF1 /* ImportKeyView.swift in Sources */,
+				B5E839422AE508DC00106E45 /* HistoryView.swift in Sources */,
 				B5E839022AE2C40900106E45 /* ExcelHandlerView.swift in Sources */,
+				B5E4DFE02AE6699500471FF1 /* SplashScreenView.swift in Sources */,
 				B5E8390D2AE2C67D00106E45 /* ReceiverListView.swift in Sources */,
 				B5E839342AE3800B00106E45 /* CID.swift in Sources */,
 				B5E839292AE3792500106E45 /* Mpool.swift in Sources */,
@@ -325,6 +340,7 @@
 				B5E838F12AE2B16000106E45 /* Fil_DistributorApp.swift in Sources */,
 				B5E8390F2AE2C6E000106E45 /* DistributorView.swift in Sources */,
 				B5E8390B2AE2C64800106E45 /* Account.swift in Sources */,
+				B5E839402AE4FE4500106E45 /* AccountView.swift in Sources */,
 				B5E8392E2AE37CB100106E45 /* Message.swift in Sources */,
 				B5E839302AE37D2A00106E45 /* Gas.swift in Sources */,
 			);
