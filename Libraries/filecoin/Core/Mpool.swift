@@ -39,9 +39,9 @@ struct Mpool {
      Batch push message to API
      NOTE: API service not support this method directly.
      */
-    func batchPushMessage(signedMessages:[SignedMessage], completion: @escaping([CID], Error?) -> Void) {
+    func batchPushMessage(signedMessages:[SignedMessage], completion: @escaping([Receipt], Error?) -> Void) {
         let group = DispatchGroup()
-        var responseDataArray: [CID] = []
+        var responseDataArray: [Receipt] = []
         let serialQueue = DispatchQueue(label: "PushMessage")
         var catchedError: Error?
         
@@ -51,7 +51,8 @@ struct Mpool {
             pushMessage(signedMessage: message, completion: {result in
                 serialQueue.sync {
                     do {
-                        try responseDataArray.append(result.get())
+                        let cid = try result.get()
+                        responseDataArray.append(Receipt(from: message.message.from, to: message.message.to, nonce: message.message.nonce, value: message.message.value, cid: cid))
                         group.leave()
                     } catch {
                         catchedError = error
@@ -65,18 +66,5 @@ struct Mpool {
         group.notify(queue: DispatchQueue.global()) {
             completion(responseDataArray, catchedError)
         }
-//        rpcAgent.request(method: FilecoinAPIMethod.mpoolBatchPush, params: [.signedMessageArray(signedMessages)], completion: { result in
-//            
-//            print("-------------------------------------------------------")
-//            print(result)
-//            print("-------------------------------------------------------")
-//            do {
-//                let response = try JSONDecoder().decode(FilecoinAPIResponseData<[CID]>.self, from: result.get())
-//                completion(.success(response.result))
-//            } catch {
-//                completion(.failure(NetworkError.parseDataFailed))
-//                return
-//            }
-//        })
     }
 }

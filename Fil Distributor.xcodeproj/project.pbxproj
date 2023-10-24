@@ -10,16 +10,13 @@
 		B5E4DFE02AE6699500471FF1 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4DFDF2AE6699400471FF1 /* SplashScreenView.swift */; };
 		B5E4DFE22AE6728100471FF1 /* ImportKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4DFE12AE6728100471FF1 /* ImportKeyView.swift */; };
 		B5E838F12AE2B16000106E45 /* Fil_DistributorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E838F02AE2B16000106E45 /* Fil_DistributorApp.swift */; };
-		B5E838F32AE2B16000106E45 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E838F22AE2B16000106E45 /* ContentView.swift */; };
 		B5E838F52AE2B16100106E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E838F42AE2B16100106E45 /* Assets.xcassets */; };
 		B5E838F82AE2B16100106E45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5E838F72AE2B16100106E45 /* Preview Assets.xcassets */; };
 		B5E839022AE2C40900106E45 /* ExcelHandlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839012AE2C40900106E45 /* ExcelHandlerView.swift */; };
 		B5E839042AE2C42900106E45 /* ExcelHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839032AE2C42900106E45 /* ExcelHandler.swift */; };
 		B5E839072AE2C58F00106E45 /* CoreXLSX in Frameworks */ = {isa = PBXBuildFile; productRef = B5E839062AE2C58F00106E45 /* CoreXLSX */; };
 		B5E839092AE2C5B400106E45 /* Receiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839082AE2C5B400106E45 /* Receiver.swift */; };
-		B5E8390B2AE2C64800106E45 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390A2AE2C64800106E45 /* Account.swift */; };
-		B5E8390D2AE2C67D00106E45 /* ReceiverListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */; };
-		B5E8390F2AE2C6E000106E45 /* DistributorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390E2AE2C6E000106E45 /* DistributorView.swift */; };
+		B5E8390F2AE2C6E000106E45 /* DispatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E8390E2AE2C6E000106E45 /* DispatchView.swift */; };
 		B5E839112AE2C70700106E45 /* Distributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839102AE2C70700106E45 /* Distributor.swift */; };
 		B5E839132AE2C7A100106E45 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E839122AE2C7A100106E45 /* BalanceView.swift */; };
 		B5E8391F2AE2D19B00106E45 /* libsecp256k1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E8391D2AE2D19B00106E45 /* libsecp256k1.a */; };
@@ -43,16 +40,13 @@
 		B5E4DFE12AE6728100471FF1 /* ImportKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportKeyView.swift; sourceTree = "<group>"; };
 		B5E838ED2AE2B16000106E45 /* Fil-Distributor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fil-Distributor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5E838F02AE2B16000106E45 /* Fil_DistributorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fil_DistributorApp.swift; sourceTree = "<group>"; };
-		B5E838F22AE2B16000106E45 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B5E838F42AE2B16100106E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5E838F72AE2B16100106E45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B5E838FE2AE2B19C00106E45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5E839012AE2C40900106E45 /* ExcelHandlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcelHandlerView.swift; sourceTree = "<group>"; };
 		B5E839032AE2C42900106E45 /* ExcelHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExcelHandler.swift; sourceTree = "<group>"; };
 		B5E839082AE2C5B400106E45 /* Receiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receiver.swift; sourceTree = "<group>"; };
-		B5E8390A2AE2C64800106E45 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverListView.swift; sourceTree = "<group>"; };
-		B5E8390E2AE2C6E000106E45 /* DistributorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributorView.swift; sourceTree = "<group>"; };
+		B5E8390E2AE2C6E000106E45 /* DispatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchView.swift; sourceTree = "<group>"; };
 		B5E839102AE2C70700106E45 /* Distributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distributor.swift; sourceTree = "<group>"; };
 		B5E839122AE2C7A100106E45 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		B5E839152AE2CD5600106E45 /* Filecoin.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Filecoin.md; sourceTree = "<group>"; };
@@ -114,7 +108,6 @@
 				B5E839002AE2B82900106E45 /* Models */,
 				B5E838FF2AE2B82000106E45 /* Views */,
 				B5E838F02AE2B16000106E45 /* Fil_DistributorApp.swift */,
-				B5E838F22AE2B16000106E45 /* ContentView.swift */,
 				B5E838F42AE2B16100106E45 /* Assets.xcassets */,
 				B5E838F62AE2B16100106E45 /* Preview Content */,
 			);
@@ -133,8 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E839012AE2C40900106E45 /* ExcelHandlerView.swift */,
-				B5E8390C2AE2C67D00106E45 /* ReceiverListView.swift */,
-				B5E8390E2AE2C6E000106E45 /* DistributorView.swift */,
+				B5E8390E2AE2C6E000106E45 /* DispatchView.swift */,
 				B5E839122AE2C7A100106E45 /* BalanceView.swift */,
 				B5E8393F2AE4FE4500106E45 /* AccountView.swift */,
 				B5E839412AE508DC00106E45 /* HistoryView.swift */,
@@ -149,7 +141,6 @@
 			children = (
 				B5E839032AE2C42900106E45 /* ExcelHandler.swift */,
 				B5E839082AE2C5B400106E45 /* Receiver.swift */,
-				B5E8390A2AE2C64800106E45 /* Account.swift */,
 				B5E839102AE2C70700106E45 /* Distributor.swift */,
 			);
 			path = Models;
@@ -328,18 +319,15 @@
 				B5E839422AE508DC00106E45 /* HistoryView.swift in Sources */,
 				B5E839022AE2C40900106E45 /* ExcelHandlerView.swift in Sources */,
 				B5E4DFE02AE6699500471FF1 /* SplashScreenView.swift in Sources */,
-				B5E8390D2AE2C67D00106E45 /* ReceiverListView.swift in Sources */,
 				B5E839342AE3800B00106E45 /* CID.swift in Sources */,
 				B5E839292AE3792500106E45 /* Mpool.swift in Sources */,
 				B5E839092AE2C5B400106E45 /* Receiver.swift in Sources */,
-				B5E838F32AE2B16000106E45 /* ContentView.swift in Sources */,
 				B5E839112AE2C70700106E45 /* Distributor.swift in Sources */,
 				B5E839362AE3806A00106E45 /* Signature.swift in Sources */,
 				B5E8393E2AE3FCBF00106E45 /* Key.swift in Sources */,
 				B5E8393B2AE3E48900106E45 /* Filecoin.swift in Sources */,
 				B5E838F12AE2B16000106E45 /* Fil_DistributorApp.swift in Sources */,
-				B5E8390F2AE2C6E000106E45 /* DistributorView.swift in Sources */,
-				B5E8390B2AE2C64800106E45 /* Account.swift in Sources */,
+				B5E8390F2AE2C6E000106E45 /* DispatchView.swift in Sources */,
 				B5E839402AE4FE4500106E45 /* AccountView.swift in Sources */,
 				B5E8392E2AE37CB100106E45 /* Message.swift in Sources */,
 				B5E839302AE37D2A00106E45 /* Gas.swift in Sources */,

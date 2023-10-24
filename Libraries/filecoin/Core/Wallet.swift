@@ -11,7 +11,6 @@ import Blake2
 
 struct Wallet {
     private let rpcAgent = FilecoinRPCAgent()
-    private var accounts = [Account]()
     
     func balance(sender:String, completion: @escaping(Result<Double, Error>) -> Void) {
         rpcAgent.request(method: FilecoinAPIMethod.walletBalance, params: [.string(sender)], completion: { result in
@@ -25,16 +24,21 @@ struct Wallet {
         })
     }
     
-    func sign(accountAddress: String, message:Message) throws -> SignedMessage? {
-        // NOTE:
-        // If you encounter an error here, add a `DEV_SENDER_PRIVATE_KEY`
-        // environment variable to Xcode project schema
-        // REF: https://m25lazi.medium.com/environment-variables-in-xcode-a78e07d223ed
-        // TODO: find secret key for account address
-        let pk = ProcessInfo.processInfo.environment["DEV_SENDER_PRIVATE_KEY"]!
-        guard let pkData = pkToBytes(pk: pk) else {
+    func sign(account:Key, message:Message) throws -> SignedMessage? {
+//        // NOTE:
+//        // If you encounter an error here, add a `DEV_SENDER_PRIVATE_KEY`
+//        // environment variable to Xcode project schema
+//        // REF: https://m25lazi.medium.com/environment-variables-in-xcode-a78e07d223ed
+//        // TODO: find secret key for account address
+//        let pk = ProcessInfo.processInfo.environment["DEV_SENDER_PRIVATE_KEY"]!
+        
+        guard let pkData = account.keyInfo.privateKey.bytes() else {
             return nil
         }
+        
+//        guard let pkData = pkToBytes(pk: pk) else {
+//            return nil
+//        }
         
         // cid(from the second letter) to bytes
         guard let msgData = message.cid?.bytes() else {
@@ -52,9 +56,38 @@ struct Wallet {
         }
     }
     
+//    func sign(accountAddress: String, message:Message) throws -> SignedMessage? {
+//        // NOTE:
+//        // If you encounter an error here, add a `DEV_SENDER_PRIVATE_KEY`
+//        // environment variable to Xcode project schema
+//        // REF: https://m25lazi.medium.com/environment-variables-in-xcode-a78e07d223ed
+//        // TODO: find secret key for account address
+//        let pk = ProcessInfo.processInfo.environment["DEV_SENDER_PRIVATE_KEY"]!
+//        
+//        
+//        guard let pkData = pkToBytes(pk: pk) else {
+//            return nil
+//        }
+//        
+//        // cid(from the second letter) to bytes
+//        guard let msgData = message.cid?.bytes() else {
+//            return nil
+//        }
+//        
+//        // blake2sum
+//        let b2sum = blake2bSum256(msg: Data(msgData))
+//        do {
+//            let sig = try sign(msg: [UInt8](b2sum!), seckey: [UInt8](pkData))
+//            let signedMessage = SignedMessage(message: message, signature: Signature(type: 1, data: sig))
+//            return signedMessage
+//        } catch {
+//            throw error
+//        }
+//    }
+//    
     private func blake2bSum256(msg:Data) -> Data? {
         do {
-            let hash = try! Blake2b.hash(size: 32, data: msg)
+            let hash = try Blake2b.hash(size: 32, data: msg)
             return hash
         } catch {
             return nil

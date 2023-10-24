@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct ImportKeyView: View {
-    @State private var filAddress:String = ""
-    @State private var filKey:String = ""
-    @State private var showAlert = false
-    @State private var alertMessage:String = ""
-    @State private var isPresented = false
+    @State private var filAddress:String
+    @State private var filKey:String
+    @State private var showAlert:Bool
+    @State private var alertMessage:String
+    @State private var isPresented:Bool
     @State private var importedKey:Key?
+    
+    init() {
+        self.filAddress = UserDefaults.standard.string(forKey: "filAddress") ?? ""
+        self.filKey = UserDefaults.standard.string(forKey: "filKey") ?? ""
+        self.showAlert = false
+        self.alertMessage = ""
+        self.isPresented = false
+    }
     
     var body: some View {
         NavigationStack {
@@ -69,16 +77,23 @@ struct ImportKeyView: View {
                     .frame(width: 360, height: 40)
                     .background(Color.white)
                     .foregroundColor(.blue)
-                    .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                    .shadow(radius: 11)
                     .alert(alertMessage, isPresented: $showAlert) {
                         Button("OK", role: .cancel){}
                     }
                     
                     Spacer()
                 }
+                .onAppear(perform: {
+                    self.importedKey = Key(from: filKey, address: filAddress)
+                    
+                    if self.importedKey != nil {
+                        self.isPresented = true
+                    }
+                })
             }
             .navigationDestination(isPresented: self.$isPresented ) {
-                AccountView(key: importedKey!) .navigationBarBackButtonHidden(true)
+                AccountView(key: self.$importedKey)
             }
         }
     }

@@ -8,32 +8,52 @@
 import SwiftUI
 
 struct AccountView: View {
-    @State var key:Key
+    @Binding var key:Key?
+    @State private var isPresented = false
+    @State private var isAlert = false
+    @State private var alertMessage = ""
+    @State private var receiverFilename = ""
+    @State private var receivers:[Receiver] = []
     
     var body: some View {
-        ZStack {
-            // background
-            Color.clear
-                .ignoresSafeArea()
-            
-            // foreground
-            VStack {
-                BalanceView(accountAddress: $key.address)
-                //                Spacer()
-                HistoryView()
-                    .frame(height: 500)
+        NavigationStack {
+            ZStack {
+                // background
+                Color.clear
+                    .ignoresSafeArea()
                 
-                ExcelHandlerView(callback: { receivers in
-                    print(receivers)
+                // foreground
+                VStack {
                     
-                })
+                    BalanceView(accountAddress: key!.address)
+//                        .padding(.top, 30)
+                    //                Spacer()
+                    HistoryView()
+                        .frame(height: 450)
+                    
+                    ExcelHandlerView(callback: { receivers, receiverFilename, error in
+                        // Navigate to DispatchView if `receivers` data is good
+                        if error != nil {
+                            self.isAlert = true
+                            self.alertMessage = error!.localizedDescription
+                        } else {
+                            self.receiverFilename = receiverFilename
+                            self.receivers = receivers!
+                            self.isPresented = true
+                        }
+                    })
+                }
+            }.navigationDestination(isPresented: self.$isPresented ) {
+                DispatchView(receiverFilename: receiverFilename,  sender: key!, receivers: receivers)
+            }.alert(self.alertMessage, isPresented: self.$isAlert) {
+                Button("OK", role: .cancel){}
             }
         }
     }
 }
 
 #Preview {
-    AccountView(key: Key(from: ProcessInfo.processInfo.environment["DEV_SENDER_PRIVATE_KEY"]!,
-                                  address: ProcessInfo.processInfo.environment["DEV_SENDER_ADDRESS"]!)!)
+    AccountView(key: .constant(Key(from: ProcessInfo.processInfo.environment["DEV_SENDER_PRIVATE_KEY"]!,
+                         address: ProcessInfo.processInfo.environment["DEV_SENDER_ADDRESS"]!)!))
     
 }

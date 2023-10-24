@@ -7,21 +7,6 @@
 
 import Foundation
 
-//struct Message:Codable {
-//    var Version: Int
-//    var To: String
-//    var From: String
-//    var Nonce: Int
-//    var Value: String
-//    var GasLimit: Int
-//    var GasFeeCap: String
-//    var GasPremium: String
-//    var Method: Int
-//    var Params: String
-//    
-//    
-//}
-
 enum FilecoinMethod:Int,Codable {
     case send = 0
 }
@@ -78,5 +63,21 @@ struct SignedMessage: Codable {
     enum CodingKeys: String, CodingKey {
         case message = "Message"
         case signature = "Signature"
+    }
+}
+
+struct Receipt: Codable {
+    var from: String
+    var to: String
+    var nonce: Int
+    var value: String
+    var cid: CID?
+    
+    enum CodingKeys: String, CodingKey {
+        case to = "To"
+        case from = "From"
+        case nonce = "Nonce"
+        case value = "Value"
+        case cid = "CID"
     }
 }

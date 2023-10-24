@@ -12,7 +12,7 @@ import secp256k1
 struct Distributor {
     private let filecoin = Filecoin()
     
-    func packMessages(sender: Account, receivers: [Receiver], startNonce: Int) -> [Message] {
+    func packMessages(sender: Key, receivers: [Receiver], startNonce: Int) -> [Message] {
         var messages = [Message]()
         var nonce = startNonce
         receivers.forEach { r in
@@ -27,12 +27,12 @@ struct Distributor {
         return messages
     }
     
-    func signMessages(sender: Account, messages: [Message])throws -> [SignedMessage]{
+    func signMessages(sender: Key, messages: [Message])throws -> [SignedMessage]{
         var signedMessages = [SignedMessage]()
         // to get signature
         for message in messages {
             do {
-                let signedMessage = try filecoin.wallet.sign(accountAddress: sender.address, message: message)
+                let signedMessage = try filecoin.wallet.sign(account: sender, message: message)
                 signedMessages.append(signedMessage!)
             } catch {
                 throw error
@@ -42,34 +42,38 @@ struct Distributor {
     }
     
     
-    func dispatch(sender: Account, receivers: [Receiver]) {
+    func dispatch(sender: Key, receivers: [Receiver],  completion: @escaping(Result<[Receipt], Error>) -> Void){
         filecoin.mpool.getNonce(sender: sender.address, completion: { result in
-            let nonce = try! result.get()
-            
-            let messages = packMessages(sender: sender, receivers: receivers, startNonce: nonce)
-            
-            self.filecoin.gas.batchEstimateMessageGas(messages: messages, maxFee: MaxFee(), cids: [], completion: { result in
-                do {
-                    let response = try result.get()
-                    let signedMessages = try signMessages(sender: sender, messages: response)
-                    
-                    // push to mpool
-                    self.filecoin.mpool.batchPushMessage(signedMessages: signedMessages, completion: { cids, error in
-                        if error != nil {
-                            print(error)
-                        }
-                        for cid in cids {
-                            print(cid.value)
-                        }
-                    })
-                } catch {
-                    print(error)
-                }
-            })
+            do {
+                let nonce = try result.get()
+                
+                let messages = packMessages(sender: sender, receivers: receivers, startNonce: nonce)
+                
+                self.filecoin.gas.batchEstimateMessageGas(messages: messages, maxFee: MaxFee(), cids: [], completion: { result in
+                    do {
+                        let response = try result.get()
+                        let signedMessages = try signMessages(sender: sender, messages: response)
+                        
+                        // push to mpool
+                        self.filecoin.mpool.batchPushMessage(signedMessages: signedMessages, completion: { receipts, error in
+                            if error != nil {
+                                completion(.failure(error!))
+                            } else {
+                                completion(.success(receipts))
+                            }
+                        })
+                    } catch {
+                        completion(.failure(error))
+                    }
+                })
+            }
+            catch {
+                completion(.failure(error))
+            }
         })
     }
     
-    func send(fromAccount: Account, receivers: [Receiver]) {
+    func send(fromAccount: Key, receivers: [Receiver]) {
         receivers.forEach { r in
             print("Send \(r.address): \(r.amount)")
         }
@@ -95,7 +99,7 @@ struct Distributor {
                     do {
                         let response = try result.get()
                         // to get signature
-                        guard let signedMessage = try self.filecoin.wallet.sign(accountAddress: fromAccount.address, message: response) else {
+                        guard let signedMessage = try self.filecoin.wallet.sign(account: fromAccount, message: response) else {
                             return
                         }
                         

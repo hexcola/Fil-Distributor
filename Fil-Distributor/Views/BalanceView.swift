@@ -9,8 +9,7 @@ import SwiftUI
 
 
 struct BalanceView: View {
-    
-    @Binding var accountAddress: String
+    var accountAddress: String
     @State var accountBalance: Double = 0
     private let filecoin = Filecoin()
     
@@ -39,21 +38,20 @@ struct BalanceView: View {
             Text("\(accountBalance) FIL")
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .foregroundStyle(Color.white)
-                .onAppear {
-                
-    //            filecoin.wallet.balance(sender: accountAddress, completion: { result in
-    //                do {
-    //                    accountBalance = try result.get()
-    //                } catch {
-    //                    print(error)
-    //                }
-    //            })
-            }
+                .onAppear {                
+                    filecoin.wallet.balance(sender: accountAddress, completion: { result in
+                        do {
+                            accountBalance = try result.get()
+                        } catch {
+                            print(error)
+                        }
+                    })
+                }
         }
         .frame(width: 360, height: 200)
         .background(
-//            LinearGradient(gradient: Gradient(colors: [.yellow,.purple, .pink, .purple, .yellow]), startPoint: .bottomLeading, endPoint: .topTrailing)
-//            
+            //            LinearGradient(gradient: Gradient(colors: [.yellow,.purple, .pink, .purple, .yellow]), startPoint: .bottomLeading, endPoint: .topTrailing)
+            //            
             RadialGradient(gradient: Gradient(colors: [.yellow,.purple, .pink, .purple, .yellow]), center: .center, startRadius: 2, endRadius: 650)
         )
         .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -66,5 +64,5 @@ struct BalanceView: View {
     // If you encounter an error here, add a `DEV_SENDER_ADDRESS`
     // environment variable to Xcode project schema
     // REF: https://m25lazi.medium.com/environment-variables-in-xcode-a78e07d223ed
-    BalanceView(accountAddress: .constant(ProcessInfo.processInfo.environment["DEV_SENDER_ADDRESS"]!))
+    BalanceView(accountAddress: ProcessInfo.processInfo.environment["DEV_SENDER_ADDRESS"]!)
 }
